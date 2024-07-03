@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>YOLO Object Detection</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Upload an Image for YOLO Object Detection</h1>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="file" name="file" class="form-control-file">
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+
+        {% if uploaded_image %}
+            <h2 class="mt-5">Uploaded Image</h2>
+            <img src="{{ url_for('uploaded_file', filename=uploaded_image.split('/')[-1]) }}" class="img-fluid" alt="Uploaded Image">
+        {% endif %}
+
+        {% if result_image %}
+            <h2 class="mt-5">Result Image</h2>
+            <img src="data:image/jpeg;base64,{{ result_image }}" class="img-fluid" alt="Result Image">
+        {% endif %}
+    </div>
+</body>
+</html>
